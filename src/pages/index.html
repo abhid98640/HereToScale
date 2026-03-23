@@ -373,6 +373,29 @@
 
     .modal-close:hover { color: #fff; }
 
+    /* ─── WORD REVEAL SECTION ───────────────────────────── */
+    .about-reveal {
+      background: #f0eeea;
+      padding: 12rem 6rem 14rem;
+    }
+
+    .reveal-text {
+      font-family: var(--font);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.2vw, 4rem);
+      letter-spacing: -0.03em;
+      line-height: 1.18;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .reveal-word {
+      display: inline;
+      color: rgba(12,12,12,0.1);
+      transition: none;
+      white-space: pre-wrap;
+    }
+
     /* ─── CARD STACK SECTION ────────────────────────────── */
     .cards-section {
       background: #e8e5e0;
@@ -656,6 +679,11 @@
     </div>
   </section>
 
+  <!-- ── ABOUT WORD REVEAL ── -->
+  <section class="about-reveal" id="about">
+    <p class="reveal-text" id="revealText"></p>
+  </section>
+
   <!-- ── SERVICE MODAL ── -->
   <div class="modal-backdrop" id="modal">
     <div class="modal">
@@ -785,6 +813,29 @@
         });
       }
     });
+    /* ── WORD REVEAL ── */
+    const sentence = "From passionate people who love building and scaling things. We work with founders, brands, and bold startups — setting one clear goal, cutting the noise, and moving fast. When the work is done, results are live and measured. Not just delivered.";
+
+    const container = document.getElementById('revealText');
+    sentence.split(' ').forEach((word, i, arr) => {
+      const span = document.createElement('span');
+      span.className = 'reveal-word';
+      span.textContent = word + (i < arr.length - 1 ? ' ' : '');
+      container.appendChild(span);
+    });
+
+    gsap.to('.reveal-word', {
+      color: 'rgba(12,12,12,1)',
+      stagger: 0.06,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.about-reveal',
+        start: 'top 75%',
+        end: 'bottom 55%',
+        scrub: true,
+      }
+    });
+
     }); // end DOMContentLoaded
   </script>
 
