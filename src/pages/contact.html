@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get in Touch — Here to Scale" />
+  <title>Get in Touch — Here to Scale</title>
+  <style>
+    @font-face {
+      font-family: 'Helvetica Now Display';
+      src: url('assets/fonts/HelveticaNowDisplay-Bold.woff2') format('woff2'),
+           url('assets/fonts/HelveticaNowDisplay-Bold.woff') format('woff');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Helvetica Now Display';
+      src: url('assets/fonts/HelveticaNowDisplay-Regular.woff2') format('woff2'),
+           url('assets/fonts/HelveticaNowDisplay-Regular.woff') format('woff');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font: 'Helvetica Now Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --white: #f5f3ef;
+      --black: #0c0c0c;
+      --warm: #f0eeea;
+    }
+
+    html { scroll-behavior: auto; }
+    body { font-family: var(--font); background: var(--warm); color: var(--black); overflow-x: hidden; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 1.4rem; left: 50%; transform: translateX(-50%);
+      z-index: 200; display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1rem 0.6rem 1.6rem; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.12); background: rgba(12,12,12,0.62);
+      backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); white-space: nowrap;
+      transition: background 0.45s ease,
+                  padding 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+    }    nav.scrolled {
+      background: rgba(12,12,12,0.85); backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px); border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    }
+    .nav-logo { display: flex; align-items: center; margin-right: 1rem; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-img { height: 80px; width: auto; display: block; filter: brightness(0) invert(1); }
+    .nav-links { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a {
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.85); text-decoration: none;
+      display: block; padding: 0.5rem 1rem; border-radius: 100px;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .nav-links > li > a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+    .nav-text-us {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75);
+      text-decoration: none; padding: 0.55rem 1.2rem; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.22); margin-left: 0.2rem; flex-shrink: 0;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .nav-text-us:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+    .nav-text-us { box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+    .nav-cta {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #0c0c0c; background: #ffffff;
+      text-decoration: none; padding: 0.55rem 0.9rem; border-radius: 100px;
+      margin-left: 0.4rem; flex-shrink: 0;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+    .nav-cta:hover { background: rgba(255,255,255,0.85); transform: scale(0.97); }
+    .nav-cta { box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+    .dropdown {
+      position: absolute; top: calc(100% + 0.8rem); left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: rgba(12,12,12,0.88); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 0.9rem 1.2rem; min-width: 200px;
+      opacity: 0; pointer-events: none; backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    .nav-links > li:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .dropdown li { list-style: none; }
+    .dropdown li a {
+      display: block; font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none;
+      padding: 0.5rem 0.6rem; border-radius: 8px; transition: color 0.15s, background 0.15s;
+    }
+    .dropdown li a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      background: var(--black); padding: 14rem 6rem 6rem;
+      display: flex; flex-direction: column;
+    }
+    .breadcrumb {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); display: block; margin-bottom: 2rem;
+    }
+    .breadcrumb a { color: inherit; text-decoration: none; }
+    .breadcrumb a:hover { color: rgba(255,255,255,0.7); }
+    .page-title {
+      font-family: var(--font); font-weight: 700;
+      font-size: clamp(3.5rem, 9vw, 9rem); letter-spacing: -0.03em;
+      line-height: 0.9; text-transform: uppercase; color: var(--white);
+    }
+    .page-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.4); max-width: 480px;
+      line-height: 1.65; margin-top: 2rem; font-weight: 400;
+    }
+
+    /* ─── FORM SECTION ─── */
+    .form-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    /* Left — form */
+    .form-wrap {
+      background: var(--warm);
+      padding: 6rem;
+    }
+
+    .form-label-group {
+      margin-bottom: 3rem;
+    }
+
+    .form-section-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(12,12,12,0.35);
+      display: block; margin-bottom: 1.5rem;
+    }
+
+    /* Service checkboxes */
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .service-check {
+      display: none;
+    }
+
+    .service-check-label {
+      display: block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(12,12,12,0.5);
+      padding: 0.85rem 1.2rem;
+      border: 1px solid rgba(12,12,12,0.12);
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      text-align: center;
+    }
+
+    .service-check:checked + .service-check-label {
+      background: #1B2A6B;
+      color: #fff;
+      border-color: #1B2A6B;
+    }
+
+    .service-check-label:hover {
+      border-color: rgba(12,12,12,0.4);
+      color: var(--black);
+    }
+
+    /* Text inputs */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .field-row.full { grid-template-columns: 1fr; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .field label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: rgba(12,12,12,0.4);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--black);
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(12,12,12,0.2);
+      padding: 0.7rem 0;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--black);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(12,12,12,0.25);
+    }
+
+    .field textarea {
+      resize: none;
+      height: 100px;
+      line-height: 1.6;
+    }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 3rem;
+      gap: 2rem;
+    }
+
+    .submit-note {
+      font-size: 0.7rem;
+      color: rgba(12,12,12,0.35);
+      letter-spacing: 0.05em;
+      line-height: 1.6;
+      max-width: 260px;
+    }
+
+    .submit-btn {
+      font-family: var(--font);
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: #0c0c0c; background: #ffffff;
+      border: none; cursor: pointer;
+      padding: 1.1rem 2.8rem; border-radius: 100px;
+      flex-shrink: 0; transition: background 0.2s, transform 0.2s;
+    }
+
+    .submit-btn:hover { background: #253580; transform: scale(0.97); }
+
+    /* Right — contact details panel */
+    .contact-panel {
+      background: var(--black);
+      padding: 6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .contact-panel-title {
+      font-family: var(--font); font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 3rem); letter-spacing: -0.03em;
+      text-transform: uppercase; color: var(--white);
+      line-height: 1; margin-bottom: 4rem;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      flex: 1;
+    }
+
+    .contact-item-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      display: block; margin-bottom: 0.5rem;
+    }
+
+    .contact-item-value {
+      font-size: 1rem; color: rgba(255,255,255,0.85);
+      text-decoration: none; display: block;
+      transition: color 0.2s;
+    }
+
+    .contact-item-value:hover { color: #fff; }
+
+    .contact-panel-footer {
+      margin-top: 4rem;
+      font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.2);
+      line-height: 1.8;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .form-success.show { display: block; }
+
+    .success-mark {
+      font-size: 3rem; margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .success-title {
+      font-family: var(--font); font-weight: 700;
+      font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -0.03em;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+
+    .success-text {
+      font-size: 0.95rem; color: rgba(12,12,12,0.5); line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="mainNav">
+    <a class="nav-logo" href="index.html"><img src="assets/images/logo.png" alt="Here to Scale" class="nav-logo-img" /></a>
+    <ul class="nav-links">
+      <li>
+        <a href="consulting.html">Consulting</a>
+        <ul class="dropdown">
+          <li><a href="consulting.html#new-business-start-up">New Business Start Up</a></li>
+          <li><a href="consulting.html#social-media-guidelines">Social Media Guidelines</a></li>
+          <li><a href="consulting.html#brand-guidelines">Brand Guidelines</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="branding.html">Branding</a>
+        <ul class="dropdown">
+          <li><a href="branding.html#brand-identity">Brand Identity</a></li>
+          <li><a href="branding.html#digital-signage">Digital Signage</a></li>
+          <li><a href="branding.html#commercial">Commercial</a></li>
+          <li><a href="branding.html#photoshoot">Photoshoot</a></li>
+          <li><a href="branding.html#videography">Videography</a></li>
+          <li><a href="branding.html#social-media-guidelines">Social Media Guidelines</a></li>
+          <li><a href="branding.html#social-media">Social Media</a></li>
+          <li><a href="branding.html#website">Website</a></li>
+          <li><a href="branding.html#fabrication">Fabrication</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="growth.html">Growth</a>
+        <ul class="dropdown">
+          <li><a href="growth.html#ppc">PPC</a></li>
+          <li><a href="growth.html#seo">SEO</a></li>
+          <li><a href="growth.html#social-media-promotion">Social Media Promotion</a></li>
+          <li><a href="growth.html#ads-management">Ads Management</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="technology.html">Technology</a>
+        <ul class="dropdown">
+          <li><a href="technology.html#ai-marketing-automation">AI Marketing Automation</a></li>
+          <li><a href="technology.html#ai-video">AI Video</a></li>
+          <li><a href="technology.html#digital-signage">Digital Signage</a></li>
+        </ul>
+      </li>
+    </ul>
+    <a class="nav-text-us" href="sms:">Text Us</a>
+    <a class="nav-cta" href="contact.html">Get Started</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="page-hero">
+    <span class="breadcrumb"><a href="index.html">Here to Scale</a> &nbsp;/&nbsp; Get in Touch</span>
+    <h1 class="page-title">Let's<br>Talk.</h1>
+    <p class="page-sub">Tell us what you're working on and we'll come back to you within one business day — no pitch, no pressure.</p>
+  </section>
+
+  <!-- ── FORM + CONTACT PANEL ── -->
+  <section class="form-section">
+
+    <!-- LEFT — Form -->
+    <div class="form-wrap">
+      <form id="contactForm" novalidate>
+
+        <!-- Services -->
+        <div class="form-label-group">
+          <span class="form-section-label">What are you interested in? (select all that apply)</span>
+          <div class="service-grid">
+            <div>
+              <input class="service-check" type="checkbox" id="svc-consulting" name="services" value="Consulting">
+              <label class="service-check-label" for="svc-consulting">Consulting</label>
+            </div>
+            <div>
+              <input class="service-check" type="checkbox" id="svc-branding" name="services" value="Branding">
+              <label class="service-check-label" for="svc-branding">Branding</label>
+            </div>
+            <div>
+              <input class="service-check" type="checkbox" id="svc-growth" name="services" value="Growth">
+              <label class="service-check-label" for="svc-growth">Growth</label>
+            </div>
+            <div>
+              <input class="service-check" type="checkbox" id="svc-technology" name="services" value="Technology">
+              <label class="service-check-label" for="svc-technology">Technology</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Name + Email -->
+        <div class="form-label-group">
+          <span class="form-section-label">Your details</span>
+          <div class="field-row">
+            <div class="field">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" placeholder="James" required />
+            </div>
+            <div class="field">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Carter" required />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="james@company.com" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone / WhatsApp</label>
+              <input type="tel" id="phone" name="phone" placeholder="(305) 222-7711" />
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="company">Company / Brand</label>
+              <input type="text" id="company" name="company" placeholder="Acme Ltd." />
+            </div>
+            <div class="field">
+              <label for="budget">Approximate Budget</label>
+              <select id="budget" name="budget">
+                <option value="" disabled selected>Select a range</option>
+                <option>Under $2,500</option>
+                <option>$2,500 – $5,000</option>
+                <option>$5,000 – $15,000</option>
+                <option>$15,000 – $50,000</option>
+                <option>$50,000+</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brief -->
+        <div class="form-label-group">
+          <span class="form-section-label">Tell us about your project</span>
+          <div class="field-row full">
+            <div class="field">
+              <label for="brief">What are you trying to achieve?</label>
+              <textarea id="brief" name="brief" placeholder="Give us the short version — what's the goal, where are you now, and what does success look like?"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <p class="submit-note">We read every submission personally. You'll hear back within one business day.</p>
+          <button class="submit-btn" type="submit">Send It →</button>
+        </div>
+
+      </form>
+
+      <!-- Success state -->
+      <div class="form-success" id="formSuccess">
+        <span class="success-mark">✓</span>
+        <h2 class="success-title">Message Sent.</h2>
+        <p class="success-text">We'll be in touch within one business day.<br>In the meantime, feel free to text us directly.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT — Contact details -->
+    <div class="contact-panel">
+      <h2 class="contact-panel-title">Other Ways<br>to Reach Us</h2>
+
+      <div class="contact-items">
+        <div>
+          <span class="contact-item-label">Email</span>
+          <a class="contact-item-value" href="mailto:sales@heretoscale.com">sales@heretoscale.com</a>
+        </div>
+        <div>
+          <span class="contact-item-label">WhatsApp / Text</span>
+          <a class="contact-item-value" href="sms:">(305) 222-7711</a>
+        </div>
+        <div>
+          <span class="contact-item-label">Based In</span>
+          <span class="contact-item-value" style="cursor:default">2990 SW 35th Ave, Miami, FL 33133</span>
+        </div>
+        <div>
+          <span class="contact-item-label">Working Hours</span>
+          <span class="contact-item-value" style="cursor:default">Mon – Fri, 9am – 6pm GMT</span>
+        </div>
+        <div>
+          <span class="contact-item-label">Response Time</span>
+          <span class="contact-item-value" style="cursor:default">Within one business day</span>
+        </div>
+      </div>
+
+      <p class="contact-panel-footer">
+        Here to Scale Ltd.<br>
+        Strategy · Brand · Growth · Technology
+      </p>
+    </div>
+
+  </section>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Pre-select service if coming from a service page
+    const params = new URLSearchParams(window.location.search);
+    const preselect = params.get('service');
+    if (preselect) {
+      const cb = document.querySelector(`input[value="${preselect}"]`);
+      if (cb) cb.checked = true;
+    }
+
+    // Form submit — show success state
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+    });
+  </script>
+
+</body>
+</html>

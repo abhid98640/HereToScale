@@ -57,12 +57,14 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      padding: 0.6rem 0.6rem 0.6rem 1.6rem;
+      padding: 0.6rem 1rem 0.6rem 1.6rem;
       border-radius: 100px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(12,12,12,0.62);
       backdrop-filter: blur(2px);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.18), 0 1px 6px rgba(0,0,0,0.12);
       -webkit-backdrop-filter: blur(2px);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.18), 0 1px 6px rgba(0,0,0,0.12);
       white-space: nowrap;
       transition: background 0.45s ease,
                   border-color 0.45s ease,
@@ -72,24 +74,15 @@
 
     /* Glass effect on scroll */
     nav.scrolled {
-      background: rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
-      border-color: rgba(255,255,255,0.3);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.12),
-                  inset 0 1px 0 rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08);
     }
 
-    .nav-logo {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #fff;
-      text-decoration: none;
-      margin-right: 1rem;
-      flex-shrink: 0;
-    }
+    .nav-logo { display: flex; align-items: center; margin-right: 1rem; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-img { height: 80px; width: auto; display: block; filter: brightness(0) invert(1); }
 
     .nav-links {
       display: flex;
@@ -128,12 +121,13 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #0c0c0c;
-      background: #fff;
+      background: #ffffff;
       text-decoration: none;
-      padding: 0.55rem 1.3rem;
+      padding: 0.55rem 0.9rem;
       border-radius: 100px;
       margin-left: 0.4rem;
       flex-shrink: 0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
       transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
     }
 
@@ -141,6 +135,23 @@
       background: rgba(255,255,255,0.85);
       transform: scale(0.97);
     }
+
+    .nav-text-us {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      padding: 0.55rem 1.2rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.22);
+      margin-left: 0.2rem;
+      flex-shrink: 0;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .nav-text-us:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+    .nav-text-us { box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
 
     /* Dropdown */
     .dropdown {
@@ -290,6 +301,7 @@
       justify-content: center;
       gap: 0.3em;
       cursor: pointer;
+      text-decoration: none;
       transition: letter-spacing 0.4s cubic-bezier(0.16,1,0.3,1),
                   color 0.2s ease;
       user-select: none;
@@ -558,59 +570,284 @@
       left: 0;
       color: rgba(12,12,12,0.2);
     }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 2rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #1B2A6B;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(27,42,107,0.3);
+      padding-bottom: 0.2rem;
+      transition: border-color 0.2s, gap 0.2s;
+    }
+    .card-link:hover { border-color: #1B2A6B; gap: 0.7rem; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      background: #0c0c0c;
+      padding: 8rem 6rem;
+    }
+
+    .testimonials-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      display: block;
+      margin-bottom: 5rem;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .testimonial-card {
+      padding: 3rem 3.5rem;
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .testimonial-quote {
+      font-family: var(--font);
+      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      color: var(--white);
+    }
+
+    .testimonial-quote::before {
+      content: '"';
+      color: #1B2A6B;
+    }
+
+    .testimonial-quote::after {
+      content: '"';
+      color: #1B2A6B;
+    }
+
+    .testimonial-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: auto;
+    }
+
+    .testimonial-client-logo {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+      object-position: left;
+      filter: brightness(0) invert(1);
+      opacity: 0.5;
+    }
+
+    .testimonial-logo-text {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .testimonial-person {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .testimonial-name {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .testimonial-role {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+    }
+
+    /* ─── FOOTER ─── */
+    .site-footer {
+      background: #0c0c0c;
+      color: var(--white);
+      padding: 6rem 6rem 3rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 2fr 1fr;
+      gap: 5rem;
+      padding-bottom: 5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-logo {
+      height: 36px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.35);
+      max-width: 260px;
+    }
+
+    .footer-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-col-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-col a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.18s;
+    }
+
+    .footer-col a:hover { color: #fff; }
+
+    .footer-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-contact a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .footer-contact a:hover { color: #fff; }
+
+    .footer-address {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.6;
+      margin-top: 0.4rem;
+    }
+
+    .footer-cta {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fff !important;
+      background: #1B2A6B;
+      text-decoration: none !important;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.2s;
+      align-self: flex-start;
+    }
+
+    .footer-cta:hover { background: #253580; transform: scale(0.97); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
   </style>
 </head>
 <body>
 
   <!-- ── NAV ── -->
   <nav id="mainNav">
-    <a class="nav-logo" href="#">Here to Scale</a>
+    <a class="nav-logo" href="#"><img src="assets/images/logo.png" alt="Here to Scale" class="nav-logo-img" /></a>
     <ul class="nav-links">
 
       <li>
-        <a href="#consulting">Consulting</a>
+        <a href="consulting.html">Consulting</a>
         <ul class="dropdown">
-          <li><a href="#">New Business Start Up</a></li>
-          <li><a href="#">Social Media Guidelines</a></li>
-          <li><a href="#">Brand Guidelines</a></li>
+          <li><a href="consulting.html#new-business-start-up">New Business Start Up</a></li>
+          <li><a href="consulting.html#social-media-guidelines">Social Media Guidelines</a></li>
+          <li><a href="consulting.html#brand-guidelines">Brand Guidelines</a></li>
         </ul>
       </li>
 
       <li>
-        <a href="#branding">Branding</a>
+        <a href="branding.html">Branding</a>
         <ul class="dropdown">
-          <li><a href="#">Brand Identity</a></li>
-          <li><a href="#">Digital Signage</a></li>
-          <li><a href="#">Commercial</a></li>
-          <li><a href="#">Photoshoot</a></li>
-          <li><a href="#">Videography</a></li>
-          <li><a href="#">Social Media Guidelines</a></li>
-          <li><a href="#">Social Media</a></li>
-          <li><a href="#">Website</a></li>
+          <li><a href="branding.html#brand-identity">Brand Identity</a></li>
+          <li><a href="branding.html#digital-signage">Digital Signage</a></li>
+          <li><a href="branding.html#commercial">Commercial</a></li>
+          <li><a href="branding.html#photoshoot">Photoshoot</a></li>
+          <li><a href="branding.html#videography">Videography</a></li>
+          <li><a href="branding.html#social-media-guidelines">Social Media Guidelines</a></li>
+          <li><a href="branding.html#social-media">Social Media</a></li>
+          <li><a href="branding.html#website">Website</a></li>
+          <li><a href="branding.html#fabrication">Fabrication</a></li>
         </ul>
       </li>
 
       <li>
-        <a href="#growth">Growth</a>
+        <a href="growth.html">Growth</a>
         <ul class="dropdown">
-          <li><a href="#">PPC</a></li>
-          <li><a href="#">SEO</a></li>
-          <li><a href="#">Social Media Promotion</a></li>
-          <li><a href="#">Ads Management</a></li>
+          <li><a href="growth.html#ppc">PPC</a></li>
+          <li><a href="growth.html#seo">SEO</a></li>
+          <li><a href="growth.html#social-media-promotion">Social Media Promotion</a></li>
+          <li><a href="growth.html#ads-management">Ads Management</a></li>
         </ul>
       </li>
 
       <li>
-        <a href="#technology">Technology</a>
+        <a href="technology.html">Technology</a>
         <ul class="dropdown">
-          <li><a href="#">AI Marketing Automation</a></li>
-          <li><a href="#">AI Video</a></li>
-          <li><a href="#">Digital Signage</a></li>
+          <li><a href="technology.html#ai-marketing-automation">AI Marketing Automation</a></li>
+          <li><a href="technology.html#ai-video">AI Video</a></li>
+          <li><a href="technology.html#digital-signage">Digital Signage</a></li>
         </ul>
       </li>
 
     </ul>
-    <a class="nav-cta" href="#cards">Get Started</a>
+    <a class="nav-text-us" href="sms:">Text Us</a>
+    <a class="nav-cta" href="contact.html">Get Started</a>
   </nav>
 
   <!-- ── HERO ── -->
@@ -630,12 +867,10 @@
   <section class="svc" id="services">
     <div class="svc-list">
       <div class="svc-band" id="svcBand"></div>
-      <div class="svc-item" data-service="consulting" data-image="assets/images/hero.jpg">
-        CONSULTING
-      </div>
-      <div class="svc-item" data-service="branding" data-image="assets/images/hero.jpg">BRANDING</div>
-      <div class="svc-item" data-service="growth" data-image="assets/images/hero.jpg">GROWTH</div>
-      <div class="svc-item" data-service="technology" data-image="assets/images/hero.jpg">TECHNOLOGY</div>
+      <a class="svc-item" href="consulting.html" data-service="consulting">CONSULTING <span class="svc-plus">+</span></a>
+      <a class="svc-item" href="branding.html"   data-service="branding">BRANDING <span class="svc-plus">+</span></a>
+      <a class="svc-item" href="growth.html"     data-service="growth">GROWTH <span class="svc-plus">+</span></a>
+      <a class="svc-item" href="technology.html" data-service="technology">TECHNOLOGY <span class="svc-plus">+</span></a>
     </div>
     <p class="svc-descriptor">
       Here to Scale is a full-service growth agency.<br>
@@ -660,6 +895,7 @@
             <li>Social Media Guidelines</li>
             <li>Brand Guidelines</li>
           </ul>
+          <a class="card-link" href="consulting.html">View Services →</a>
         </div>
         <div class="card-img">
           <img src="assets/images/consulting.jpg" alt="Consulting" />
@@ -680,7 +916,9 @@
             <li>Commercial Production</li>
             <li>Social Media &amp; Website</li>
             <li>Digital Signage</li>
+            <li>Fabrication &amp; BTL</li>
           </ul>
+          <a class="card-link" href="branding.html">View Services →</a>
         </div>
         <div class="card-img">
           <img src="assets/images/branding.jpg" alt="Branding" />
@@ -701,6 +939,7 @@
             <li>Social Media Promotion</li>
             <li>Ads Management</li>
           </ul>
+          <a class="card-link" href="growth.html">View Services →</a>
         </div>
         <div class="card-img">
           <img src="assets/images/growth.jpg" alt="Growth" />
@@ -719,7 +958,9 @@
             <li>AI Marketing Automation</li>
             <li>AI Video</li>
             <li>Digital Signage</li>
+            <li>Fabrication &amp; BTL</li>
           </ul>
+          <a class="card-link" href="technology.html">View Services →</a>
         </div>
         <div class="card-img">
           <img src="assets/images/technology.jpg" alt="Technology" />
@@ -828,29 +1069,6 @@
     svcList.addEventListener('mouseleave', () => band.classList.remove('visible'));
 
 
-    /* ── SERVICE MODAL (click) ── */
-    const modal      = document.getElementById('modal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalItems = document.getElementById('modalItems');
-
-    const serviceData = {
-      consulting: { title: 'Consulting',  items: ['New Business Start Up','Social Media Guidelines','Brand Guidelines'] },
-      branding:   { title: 'Branding',    items: ['Brand Identity','Digital Signage','Commercial','Photoshoot','Videography','Social Media Guidelines','Social Media','Website'] },
-      growth:     { title: 'Growth',      items: ['PPC','SEO','Social Media Promotion','Ads Management'] },
-      technology: { title: 'Technology',  items: ['AI Marketing Automation','AI Video','Digital Signage'] },
-    };
-
-    document.querySelectorAll('.svc-item[data-service]').forEach(item => {
-      item.addEventListener('click', () => {
-        const svc = serviceData[item.dataset.service];
-        modalTitle.textContent = svc.title;
-        modalItems.innerHTML   = svc.items.map(i => `<li>${i}</li>`).join('');
-        modal.classList.add('open');
-      });
-    });
-
-    document.getElementById('modalClose').addEventListener('click', () => modal.classList.remove('open'));
-    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('open'); });
 
     /* ── CARD STACK ── */
     const cards = document.querySelectorAll('.card-row');
@@ -894,6 +1112,101 @@
 
     }); // end DOMContentLoaded
   </script>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section class="testimonials">
+    <span class="testimonials-label">What clients say</span>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">They didn't just run our ads — they rebuilt how we think about growth. Revenue up 40% in 90 days. No fluff, just results.</p>
+        <div class="testimonial-footer">
+          <span class="testimonial-logo-text">dist.com</span>
+          <div class="testimonial-person">
+            <span class="testimonial-name">Gerson Carillo</span>
+            <span class="testimonial-role">Director of AV, dist.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Our showroom traffic doubled after the signage and BTL activation. People walk in already sold. That's what good branding does.</p>
+        <div class="testimonial-footer">
+          <span class="testimonial-logo-text">Astra Planeta Motors</span>
+          <div class="testimonial-person">
+            <span class="testimonial-name">Carlos V.</span>
+            <span class="testimonial-role">Director, Astra Planeta Motors</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">From zero social presence to 80k followers in six months. The strategy was sharp, the content was on point, and they actually delivered.</p>
+        <div class="testimonial-footer">
+          <img src="assets/images/logo-healthyroo.png" alt="Healthyroo" class="testimonial-client-logo" />
+          <div class="testimonial-person">
+            <span class="testimonial-name">Sarah K.</span>
+            <span class="testimonial-role">CMO, Healthyroo</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/images/logo.png" alt="Here to Scale" class="footer-logo" />
+        <p class="footer-tagline">Strategy, brand, growth, and technology — built to scale.</p>
+      </div>
+
+      <div class="footer-nav">
+        <div class="footer-col">
+          <span class="footer-col-label">Consulting</span>
+          <a href="consulting.html#new-business-start-up">New Business Start Up</a>
+          <a href="consulting.html#social-media-guidelines">Social Media Guidelines</a>
+          <a href="consulting.html#brand-guidelines">Brand Guidelines</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Branding</span>
+          <a href="branding.html#brand-identity">Brand Identity</a>
+          <a href="branding.html#commercial">Commercial</a>
+          <a href="branding.html#photoshoot">Photoshoot</a>
+          <a href="branding.html#videography">Videography</a>
+          <a href="branding.html#fabrication">Fabrication</a>
+          <a href="branding.html#website">Website</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Growth</span>
+          <a href="growth.html#ppc">PPC</a>
+          <a href="growth.html#seo">SEO</a>
+          <a href="growth.html#social-media-promotion">Social Media Promotion</a>
+          <a href="growth.html#ads-management">Ads Management</a>
+        </div>
+        <div class="footer-col">
+          <span class="footer-col-label">Technology</span>
+          <a href="technology.html#ai-marketing-automation">AI Marketing Automation</a>
+          <a href="technology.html#ai-video">AI Video</a>
+          <a href="technology.html#digital-signage">Digital Signage</a>
+        </div>
+      </div>
+
+      <div class="footer-contact">
+        <span class="footer-col-label">Get in Touch</span>
+        <a href="mailto:sales@heretoscale.com">sales@heretoscale.com</a>
+        <a href="sms:+13052227711">(305) 222-7711</a>
+        <span class="footer-address">2990 SW 35th Ave<br>Miami, FL 33133</span>
+        <a href="contact.html" class="footer-cta">Start a Project →</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Here to Scale. All rights reserved.</span>
+      <span>Miami, FL</span>
+    </div>
+  </footer>
 
 </body>
 </html>

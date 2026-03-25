@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Branding — Here to Scale" />
+  <title>Branding — Here to Scale</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <style>
+    @font-face {
+      font-family: 'Helvetica Now Display';
+      src: url('assets/fonts/HelveticaNowDisplay-Bold.woff2') format('woff2'),
+           url('assets/fonts/HelveticaNowDisplay-Bold.woff') format('woff');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Helvetica Now Display';
+      src: url('assets/fonts/HelveticaNowDisplay-Regular.woff2') format('woff2'),
+           url('assets/fonts/HelveticaNowDisplay-Regular.woff') format('woff');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --font: 'Helvetica Now Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --white: #f5f3ef;
+      --black: #0c0c0c;
+      --warm: #f0eeea;
+    }
+
+    html { scroll-behavior: auto; }
+    body { font-family: var(--font); background: var(--black); color: var(--white); overflow-x: hidden; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 1.4rem; left: 50%; transform: translateX(-50%);
+      z-index: 200; display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1rem 0.6rem 1.6rem; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.12); background: rgba(12,12,12,0.62);
+      backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); white-space: nowrap;
+      transition: background 0.45s ease,
+                  padding 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
+    }    nav.scrolled {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; margin-right: 1rem; flex-shrink: 0; text-decoration: none; }
+    .nav-logo-img { height: 80px; width: auto; display: block; filter: brightness(0) invert(1); }
+    .nav-links { display: flex; align-items: center; gap: 0.2rem; list-style: none; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a {
+      font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.85); text-decoration: none;
+      display: block; padding: 0.5rem 1rem; border-radius: 100px;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .nav-links > li > a:hover,
+    .nav-links > li > a.active { background: rgba(255,255,255,0.15); color: #fff; }
+    .nav-cta {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #0c0c0c; background: #ffffff;
+      text-decoration: none; padding: 0.55rem 0.9rem; border-radius: 100px;
+      margin-left: 0.4rem; flex-shrink: 0;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+    .nav-cta:hover { background: rgba(255,255,255,0.85); transform: scale(0.97); }
+    .nav-cta { box-shadow: 0 2px 12px rgba(0,0,0,0.15); }
+    .nav-text-us {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75);
+      text-decoration: none; padding: 0.55rem 1.2rem; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.22); margin-left: 0.2rem; flex-shrink: 0;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .nav-text-us:hover { color: #fff; border-color: rgba(255,255,255,0.5); }
+    .nav-text-us { box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
+    .dropdown {
+      position: absolute; top: calc(100% + 0.8rem); left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: rgba(12,12,12,0.88); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 0.9rem 1.2rem; min-width: 200px;
+      opacity: 0; pointer-events: none; backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+    .nav-links > li:hover .dropdown {
+      opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0);
+    }
+    .dropdown li { list-style: none; }
+    .dropdown li a {
+      display: block; font-size: 0.68rem; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55); text-decoration: none;
+      padding: 0.5rem 0.6rem; border-radius: 8px; transition: color 0.15s, background 0.15s;
+    }
+    .dropdown li a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+    /* ─── PAGE HERO ─── */
+    .page-hero {
+      min-height: 80vh; position: relative;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 12rem 6rem 6rem;
+      background: url('assets/images/branding.jpg') center / cover no-repeat;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(12,12,12,0.35) 0%,
+        rgba(12,12,12,0.55) 50%,
+        rgba(12,12,12,0.82) 100%
+      );
+    }
+    .breadcrumb {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); display: block; margin-bottom: 2.5rem;
+      position: relative; z-index: 1;
+    }
+    .breadcrumb a { color: inherit; text-decoration: none; }
+    .breadcrumb a:hover { color: rgba(255,255,255,0.8); }
+    .page-title {
+      font-family: var(--font); font-weight: 700;
+      font-size: clamp(5rem, 14vw, 14rem); letter-spacing: -0.03em;
+      line-height: 0.88; text-transform: uppercase; color: var(--white);
+      position: relative; z-index: 1;
+    }
+    .page-desc {
+      font-size: 1rem; color: rgba(255,255,255,0.55); max-width: 520px;
+      line-height: 1.65; margin-top: 2.5rem; font-weight: 400;
+      position: relative; z-index: 1;
+    }
+
+    /* ─── SERVICES LIST ─── */
+    .services-section { background: var(--warm); }
+
+    .service-row {
+      display: flex; align-items: flex-start; gap: 2rem;
+      padding: 3rem 6rem; border-bottom: 1px solid rgba(12,12,12,0.08);
+      text-decoration: none; color: var(--black);
+      position: relative; overflow: hidden;
+      transition: color 0.25s ease;
+    }
+    .service-row::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--black);
+      transform: translateX(-100%);
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1);
+    }
+    .service-row:hover { color: var(--white); }
+    .service-row:hover::before { transform: translateX(0); }
+
+    .row-num {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em;
+      width: 48px; flex-shrink: 0; opacity: 0.3; position: relative; z-index: 1;
+      padding-top: 0.6rem; transition: opacity 0.25s;
+    }
+    .service-row:hover .row-num { opacity: 0.5; }
+
+    .row-body {
+      flex: 1; display: flex; flex-direction: column; gap: 1.1rem;
+      position: relative; z-index: 1;
+    }
+    .row-header {
+      display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    }
+    .row-name {
+      font-family: var(--font); font-weight: 700;
+      font-size: clamp(1.6rem, 3.8vw, 3.4rem); letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+    .row-desc {
+      font-size: 0.95rem; font-weight: 400; line-height: 1.75;
+      color: rgba(12,12,12,0.5); max-width: 680px;
+      transition: color 0.25s ease;
+    }
+    .service-row:hover .row-desc { color: rgba(255,255,255,0.6); }
+    .row-arrow {
+      font-size: 1.4rem; position: relative; z-index: 1; flex-shrink: 0;
+      opacity: 0.25; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.25s;
+    }
+    .service-row:hover .row-arrow { transform: translateX(10px); opacity: 1; }
+
+    /* ─── CTA STRIP ─── */
+    .page-cta {
+      background: var(--black); padding: 8rem 6rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 3rem;
+    }
+    .cta-text {
+      font-family: var(--font); font-weight: 700;
+      font-size: clamp(2.5rem, 6vw, 5.5rem); letter-spacing: -0.03em;
+      text-transform: uppercase; line-height: 0.9;
+    }
+    .cta-btn {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: #0c0c0c; background: #ffffff;
+      text-decoration: none; padding: 1.1rem 2.8rem; border-radius: 100px;
+      flex-shrink: 0; transition: background 0.2s, transform 0.2s;
+    }
+    .cta-btn:hover { background: #253580; transform: scale(0.97); }
+    .cta-btns { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+    .cta-btn-ghost {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--white); background: transparent;
+      text-decoration: none; padding: 1.1rem 2.8rem; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.25); flex-shrink: 0;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cta-btn-ghost:hover { border-color: rgba(255,255,255,0.7); transform: scale(0.97); }
+  </style>
+</head>
+<body>
+
+  <nav id="mainNav">
+    <a class="nav-logo" href="index.html"><img src="assets/images/logo.png" alt="Here to Scale" class="nav-logo-img" /></a>
+    <ul class="nav-links">
+      <li>
+        <a href="consulting.html">Consulting</a>
+        <ul class="dropdown">
+          <li><a href="consulting.html#new-business-start-up">New Business Start Up</a></li>
+          <li><a href="consulting.html#social-media-guidelines">Social Media Guidelines</a></li>
+          <li><a href="consulting.html#brand-guidelines">Brand Guidelines</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="branding.html" class="active">Branding</a>
+        <ul class="dropdown">
+          <li><a href="branding.html#brand-identity">Brand Identity</a></li>
+          <li><a href="branding.html#digital-signage">Digital Signage</a></li>
+          <li><a href="branding.html#commercial">Commercial</a></li>
+          <li><a href="branding.html#photoshoot">Photoshoot</a></li>
+          <li><a href="branding.html#videography">Videography</a></li>
+          <li><a href="branding.html#social-media-guidelines">Social Media Guidelines</a></li>
+          <li><a href="branding.html#social-media">Social Media</a></li>
+          <li><a href="branding.html#website">Website</a></li>
+          <li><a href="branding.html#fabrication">Fabrication</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="growth.html">Growth</a>
+        <ul class="dropdown">
+          <li><a href="growth.html#ppc">PPC</a></li>
+          <li><a href="growth.html#seo">SEO</a></li>
+          <li><a href="growth.html#social-media-promotion">Social Media Promotion</a></li>
+          <li><a href="growth.html#ads-management">Ads Management</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="technology.html">Technology</a>
+        <ul class="dropdown">
+          <li><a href="technology.html#ai-marketing-automation">AI Marketing Automation</a></li>
+          <li><a href="technology.html#ai-video">AI Video</a></li>
+          <li><a href="technology.html#digital-signage">Digital Signage</a></li>
+        </ul>
+      </li>
+    </ul>
+    <a class="nav-text-us" href="sms:">Text Us</a>
+    <a class="nav-cta" href="contact.html">Get Started</a>
+  </nav>
+
+  <section class="page-hero">
+    <span class="breadcrumb"><a href="index.html">Here to Scale</a> &nbsp;/&nbsp; Branding</span>
+    <h1 class="page-title">Branding</h1>
+    <p class="page-desc">From identity systems to full content production — we build brands that stop the scroll and hold attention across every touchpoint.</p>
+  </section>
+
+  <section class="services-section">
+    <a class="service-row" href="#brand-identity" id="brand-identity">
+      <span class="row-num">01</span>
+      <div class="row-body">
+        <div class="row-header">
+          <span class="row-name">Brand Identity</span>
+          <span class="row-arrow">→</span>
+        </div>
+        <p class="row-desc">A great brand doesn't just look good — it feels like something. We build visual identities with a genuine point of view: the logo, the palette, the typography, the whole system. Designed to hold its own at any scale, in any context, on any surface. No templates. No shortcuts.</p>
+      </div>
+    </a>
+    <a class="service-row" href="#digital-signage" id="digital-signage">
+      <span class="row-num">02</span>
+      <div class="row-body">
+        <div class="row-header">
+          <span class="row-name">Digital Signage</span>
+          <span class="row-arrow">→</span>
+        </div>
+        <p class="row-desc">Static screens are a missed opportunity. We design digital signage that moves, breathes, and actually earns attention — whether it's a flagship retail environment, a hospitality space, or a waiting room that deserves considerably better than a screensaver.</p>
+      </div>
+    </a>
+    <a class="service-row" href="#commercial" id="commercial">
+      <span class="row-num">03</span>
+      <div class="row-body">
+        <div class="row-header">
+          <span class="row-name">Commercial</span>
+          <span class="row-arrow">→</span>
+        </div>
+        <p class="row-desc">The kind of content that stops someone mid-scroll and compels them to watch the whole thing. We produce commercials with real craft — scripted, shot, and edited to the standard your brand actually deserves. Not content for content's sake. Work that moves people.</p>
+      </div>
+    </a>
+    <a class="service-row" href="#photoshoot" id="photoshoot">
+      <span class="row-num">04</span>
+      <div class="row-body">
+        <div class="row-header">
+          <span class="row-name">Photoshoot</span>
+          <span class="row-arrow">→</span>
+        </div>
+        <p class="row-desc">Stock photography is a tax on ambition. We create bespoke imagery that is undeniably, unmistakably yours — product, lifestyle, portrait, or editorial. Shot with intention, retouched with restraint, and ready to carry your brand across every channel it needs to live on.</p>
+      </div>
+    </a>
+    <a class="service-row" href="#videography" id="videography">
+      <span class="row-num">05</span>
+      <div class="row-body">
+        <div class="row-header">
+          <span class="row-name">Videography</span>
+          <span class="row-arrow">→</span>
+        </div>
+        <p class="row-desc">Moving image, done properly. From concept through to final grade, we handle the full production: direction, cinematography, sound, colour. Whether it's a brand film, a social series, or a one-off campaign piece — it leaves a mark long after the screen goes dark.</p>
+      </div>
+    </a>
+    <a class="service-row" href="#social-media-guidelines" id="social-media-guidelines">
+      <span class="row-num">06</span>
+      <div class="row-body">
+        <div class="row-header">
+          <span class="row-name">Social Media Guidelines</span>
+          <span class="row-arrow">→</span>
+        </div>
+        <p class="row-desc">What your brand says and how it says it should never be left to chance or personal interpretation. We write the guidelines that give your social presence a consistent, confident voice — across every platform, every team member, and every time zone you operate in.</p>
+      </div>
+    </a>
+    <a class="service-row" href="#social-media" id="social-media">
+      <span class="row-num">07</span>
+      <div class="row-body">
+        <div class="row-header">
+          <span class="row-name">Social Media</span>
+          <span class="row-arrow">→</span>
+        </div>
+        <p class="row-desc">We run social media the way it should be run: with strategy, with creativity, and with honest attention paid to what is and isn't working. Content that builds real audiences — not just impressions — and a presence that says something worth listening to.</p>
+      </div>
+    </a>
+    <a class="service-row" href="#website" id="website">
+      <span class="row-num">08</span>
+      <div class="row-body">
+        <div class="row-header">
+          <span class="row-name">Website</span>
+          <span class="row-arrow">→</span>
+        </div>
+        <p class="row-desc">Your website is the one place where you control the entire experience from first impression to conversion. We design and build sites that are fast, considered, and built to perform — not just to look good in a portfolio. Beautiful by default, effective by design.</p>
+      </div>
+    </a>
+    <a class="service-row" href="#fabrication" id="fabrication">
+      <span class="row-num">09</span>
+      <div class="row-body">
+        <div class="row-header">
+          <span class="row-name">Fabrication</span>
+          <span class="row-arrow">→</span>
+        </div>
+        <p class="row-desc">When the brand needs to exist in the physical world — not just on a screen. We design and fabricate bespoke BTL structures for events, activations, retail environments, and exhibitions. From technical drawings to the finished build, we bring the brand off the page and into the spaces your audience actually inhabits. Exhibition stands, pop-up installations, branded environments, POS displays, event staging — built to standard, built to last.</p>
+      </div>
+    </a>
+  </section>
+
+  <section class="page-cta">
+    <p class="cta-text">Ready<br>to Scale?</p>
+    <div class="cta-btns">
+      <a class="cta-btn" href="contact.html?service=Branding">Get in Touch</a>
+      <a class="cta-btn-ghost" href="sms:">Text Us</a>
+    </div>
+  </section>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+  </script>
+</body>
+</html>
